@@ -1,5 +1,4 @@
 import unittest
-from unittest.main import main
 
 import ex1_solution
 
