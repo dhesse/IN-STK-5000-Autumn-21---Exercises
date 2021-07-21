@@ -1,9 +1,4 @@
 import pandas as pd
-from scipy.sparse.construct import rand
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.pipeline import Pipeline
-from sklearn.compose import ColumnTransformer
 
 class Ex5:
 
@@ -23,15 +18,7 @@ class Ex5:
         remove randomness for future tasks, set the random_state argument of the
         DecisionTreeRegressor to 1234."""
 
-        cat_trans = Pipeline(steps=[('onehot', OneHotEncoder(drop='first'))])
-        feature_trans = ColumnTransformer(
-            transformers=[('categorical', cat_trans, ['cut', 'color'])],
-            remainder='passthrough')
-
-        return Pipeline(steps=[('feature_tranform', feature_trans),
-                               ('regressor', DecisionTreeRegressor(
-                                   max_depth=max_depth,
-                                   random_state=1234))])
+        pass
         
     def task2(self):
 
@@ -40,13 +27,7 @@ class Ex5:
         model, using the carat, depth, table, cut and color columns of the
         diamonds data to predict the price. Return the R-squared scores."""
 
-        from sklearn.model_selection import KFold, cross_val_score
-
-        f_cols = ['carat', 'depth', 'table', 'cut', 'color']
-        t_col = ['price']
-
-        return cross_val_score(self.task1(5), 
-                    self.d[f_cols], self.d[t_col], cv=5, scoring='r2')
+        pass
 
     def task3(self):
 
@@ -55,15 +36,7 @@ class Ex5:
         stepwise feature selection with a DecisionTreeRegressor (random_state 0)
         of depth 6. Return the names of the selected columns."""
 
-        from sklearn.feature_selection import SequentialFeatureSelector
-
-        df = self.d[['carat', 'depth', 'table']].join(
-            pd.get_dummies(self.d[['cut', 'color']]))
-        fwd_stepwise = SequentialFeatureSelector(
-            DecisionTreeRegressor(max_depth=6, random_state=0),
-            n_features_to_select=5
-        ).fit(df, self.d['price'])
-        return df.columns[fwd_stepwise._get_support_mask()]
+        pass
 
     def task4(self):
 
@@ -72,16 +45,7 @@ class Ex5:
         feature. Return the names of the selected columns. Why are different
         features selected than in task 3?"""
 
-        from sklearn.feature_selection import SelectKBest
-
-        # no correlation between features is taken into account. Carat and depth
-        # are highly correlated, hence it might be beneficial to have just one
-        # of them in a limited set of features and rather include others
-
-        df = self.d[['carat', 'depth', 'table']].join(
-            pd.get_dummies(self.d[['cut', 'color']]))
-        fwd_stepwise = SelectKBest(k=5).fit(df, self.d['price'])
-        return df.columns[fwd_stepwise._get_support_mask()]
+        pass
 
     def task5(self):
 
@@ -91,12 +55,4 @@ class Ex5:
         random state for the automated tests). Use the same columns as in the
         previous tasks. Use R-squared to score your estimators."""
 
-        from sklearn.model_selection import GridSearchCV
-
-        param_grid = {'regressor__max_depth': range(1, 16)}
-
-        f_cols = ['carat', 'depth', 'table', 'cut', 'color']
-        t_col = ['price']
-
-        return GridSearchCV(self.task1(5), param_grid, cv=5, scoring='r2')\
-            .fit(self.d[f_cols], self.d[t_col])
+        pass
