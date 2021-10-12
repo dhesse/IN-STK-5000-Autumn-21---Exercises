@@ -1,0 +1,51 @@
+import pandas as pd
+
+class Ex7:
+
+    """We will solve various tasks using a data set containing
+    patients suffering from heart disease, again. You have to write the code to
+    complete the tasks. The data set is loaded for you, no need to do anything
+    with this.
+    """
+
+    d = pd.read_csv("heart.csv.gz")
+
+    def task1(self):
+        """Laplae mechanism.
+        
+        Return a function that implements the Laplace mechanism. It will accept
+        three arguments, the answer, the sensitivity, and the privacy parameter
+        epsilon, in that order, and return the randomized response. Use numpy's
+        Laplace function for reproducibility."""
+
+        pass
+
+    def task2(self):
+        """Randomized query.
+        
+        Using the Laplace mechanism from the previous task, setting sensitivity
+        and epsilon to 1, answer the question how many of the patients over 60
+        years of agesuffer from heart disease."""
+
+        pass
+
+    def task3(self, epsilon):
+        """Private regression pipeline.
+        
+        Return a pipeline that scales the full input data to zero mean and unit
+        variance and fits a LogisticRegression from the diffprivlib package.
+        Since we scale the data we can use 1 as the data norm.
+        """
+        pass
+    
+    def task4(self):
+        """Explore model performance.
+        
+        Calculate average cross validation scores (5 folds), using the full
+        dataset, of the model pipeline created in the previous task. Scan 
+        epsilon values between 0.1 and 5, in 10 even steps.
+        
+        You are encouraged to also plot the results, and explore the variance
+        in performance."""
+        
+        pass
